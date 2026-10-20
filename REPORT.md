@@ -21,7 +21,7 @@ flowchart LR
 
 The GitHub webhook triggers the declarative Jenkins pipeline. Jenkins checks out the current revision, builds the Maven project, and runs the JUnit suite. Surefire XML reports are published even when a test fails. It builds two Docker tags: the Jenkins build number for an immutable deployment and `latest` for convenient local use.
 
-Docker Hub authentication uses the Jenkins credential named `dockerhub-credentials`; no password or token is committed. The selected build-number tag is deployed through Docker Compose. The API runs behind Nginx, and the deployment stage polls the public Actuator health endpoint before marking the build successful. Jenkins sends success or failure email through the Email Extension plugin using the recipient held in `notification-email`.
+Docker Hub authentication uses the Jenkins credential named `dockerhub-creds`; no password or token is committed. The selected build-number tag is deployed through Docker Compose. The API runs behind Nginx, and the deployment stage polls the public Actuator health endpoint before marking the build successful. Jenkins sends success or failure email through the Email Extension plugin.
 
 ## Container design
 
@@ -33,4 +33,4 @@ Compose starts the calculator API and Nginx on a dedicated network. The API heal
 
 `mvn test` completed successfully with seven tests: the four arithmetic operations, division by zero, a MockMvc endpoint test, and a structured-error integration test. The Docker image was built locally and the Compose stack was tested through Nginx with `GET /actuator/health` and `GET /api/v1/divide?a=9&b=2`.
 
-Before the live demo, configure the Jenkins Docker Hub and email credentials listed in the README, create the Docker Hub `calculator-api` repository, and add the GitHub webhook. Capture the required green-pipeline, email, `docker ps`, and API-response screenshots from that genuine Jenkins run.
+Before the live demo, configure the Jenkins SMTP settings with the existing `gmail-smtp` credential, create the Docker Hub `calculator-api` repository, and add the GitHub webhook. Capture the required green-pipeline, email, `docker ps`, and API-response screenshots from that genuine Jenkins run.
