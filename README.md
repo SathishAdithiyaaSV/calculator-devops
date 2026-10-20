@@ -65,6 +65,8 @@ Install and configure the Email Extension plugin and global SMTP settings for `e
 
 The Docker Hub repository is named `calculator-api`; create it in Docker Hub before the first push.
 
+See [REPORT.md](REPORT.md) for the pipeline architecture and demo checklist.
+
 ## Image
 
 ```bash
