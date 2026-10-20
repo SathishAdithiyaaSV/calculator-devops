@@ -1,0 +1,32 @@
+# Build output
+target/
+*.jar
+*.war
+
+# Maven wrapper files downloaded locally
+.mvn/wrapper/maven-wrapper.jar
+
+# IDE and editor metadata
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+.vscode/
+
+# OS files and logs
+.DS_Store
+Thumbs.db
+*.log
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+
+# Codex local state
+.codex/
+*.codex
