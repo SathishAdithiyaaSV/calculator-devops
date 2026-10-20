@@ -1,0 +1,9 @@
+.git
+.gitignore
+.codex
+target
+README.md
+*.log
+.idea
+.vscode
+SPE_Mini_Project.docx
