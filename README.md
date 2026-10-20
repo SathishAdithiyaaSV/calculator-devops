@@ -21,13 +21,13 @@ JUnit XML results are written to `target/surefire-reports/` for Jenkins to publi
 mvn spring-boot:run
 ```
 
-The API listens on port 8080. Alternatively, launch the complete Nginx + API stack:
+The API listens on port 8080 when started directly. The Compose stack uses port 8081 because Jenkins commonly occupies port 8080:
 
 ```bash
 docker compose up --build -d
 docker compose ps
-curl "http://localhost:8080/api/v1/add?a=2&b=3"
-curl http://localhost:8080/actuator/health
+curl "http://localhost:8081/api/v1/add?a=2&b=3"
+curl http://localhost:8081/actuator/health
 ```
 
 Stop it with `docker compose down`.
@@ -71,7 +71,7 @@ See [REPORT.md](REPORT.md) for the pipeline architecture and demo checklist.
 
 ```bash
 docker build -t calculator-api:local .
-docker run --rm -p 8080:8080 calculator-api:local
+docker run --rm -p 8081:8080 calculator-api:local
 ```
 
 The image is multi-stage and its runtime process uses a non-root user.
