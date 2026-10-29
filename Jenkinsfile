@@ -7,8 +7,8 @@ pipeline {
 
     environment {
         IMAGE_NAME = 'calculator-api'
-        DOCKERHUB = credentials('dockerhub-credentials')
-        NOTIFICATION_EMAIL = credentials('notification-email')
+        DOCKERHUB = credentials('dockerhub-creds')
+        EMAIL_RECIPIENT = 'sathishsv2068@gmail.com'
     }
 
     stages {
@@ -67,10 +67,10 @@ pipeline {
 
     post {
         success {
-            emailext to: "$NOTIFICATION_EMAIL", subject: "Calculator pipeline #$BUILD_NUMBER succeeded", body: "The calculator API was built, tested, published, and deployed successfully."
+            emailext to: "$EMAIL_RECIPIENT", subject: "Calculator pipeline #$BUILD_NUMBER succeeded", body: "The calculator API was built, tested, published, and deployed successfully."
         }
         failure {
-            emailext to: "$NOTIFICATION_EMAIL", subject: "Calculator pipeline #$BUILD_NUMBER failed", body: "Review the Jenkins console log for the failed stage."
+            emailext to: "$EMAIL_RECIPIENT", subject: "Calculator pipeline #$BUILD_NUMBER failed", body: "Review the Jenkins console log for the failed stage."
         }
         always {
             sh 'docker logout || true'

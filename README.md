@@ -58,10 +58,10 @@ Configure these Jenkins credentials before the first build:
 
 | Credential ID | Type | Value |
 | --- | --- | --- |
-| `dockerhub-credentials` | Username with password | Docker Hub username and access token |
-| `notification-email` | Secret text | Recipient email address |
+| `dockerhub-creds` | Username with password | Docker Hub username and access token |
+| `github-creds` | Username with password | GitHub username and personal access token, for Jenkins repository checkout |
 
-Install and configure the Email Extension plugin and global SMTP settings for `emailext`. Each run checks out the repository, builds, tests, publishes JUnit reports, builds and pushes versioned Docker images, deploys the selected image through Compose, checks `/actuator/health`, and emails the result.
+Install and configure the Email Extension plugin and global SMTP settings using the existing `gmail-smtp` credential for `emailext`. Each run checks out the repository, builds, tests, publishes JUnit reports, builds and pushes versioned Docker images, deploys the selected image through Compose, checks `/actuator/health`, and emails the result.
 
 The Docker Hub repository is named `calculator-api`; create it in Docker Hub before the first push.
 
