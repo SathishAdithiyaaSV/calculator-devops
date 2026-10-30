@@ -54,9 +54,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh '''
-                    DOCKERHUB_USERNAME="$DOCKERHUB_USR" IMAGE_TAG="$BUILD_NUMBER" docker compose up -d --no-build
+                    DOCKERHUB_USERNAME="$DOCKERHUB_USR" IMAGE_TAG="$BUILD_NUMBER" API_PORT=8081 docker compose up -d --no-build
                     for attempt in $(seq 1 12); do
-                        if curl --fail --silent http://localhost:8080/actuator/health; then exit 0; fi
+                        if curl --fail --silent http://localhost:8081/actuator/health; then exit 0; fi
                         sleep 5
                     done
                     exit 1
