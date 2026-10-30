@@ -1,6 +1,6 @@
 # Calculator API CI/CD Report
 
-## Architecture
+## Architecture diagram
 
 ```mermaid
 flowchart LR
